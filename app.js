@@ -42,7 +42,6 @@ app.use('/', cors(), noteRouter);
 app.use('/', cors(), userProfileRouter)
 
 
-
 app.listen(5001, () => console.log('Server is running at 5001 ... '))
 
 

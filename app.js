@@ -18,7 +18,7 @@ function auth(req, res, next) {
     if (!req.headers.authorization) {
         res.send({ success: false, error: "Please provide Authorization" })
     }
-    const arr = req.headers.authorization.toString().split(" ")
+    const arr = req.headers.authorization.split(" ")
     if (arr.length != 2) {
         res.send({ success: false, error: "Please use Bearer Scheme" })
     }

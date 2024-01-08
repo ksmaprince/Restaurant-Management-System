@@ -10,7 +10,7 @@ let db = null;
 
 const connectDB = async () => {
     try {
-        const client = new MongoClient("mongodb+srv://comprodemo:comprodemo@cluster-i.rqbm9px.mongodb.net/")
+        const client = new MongoClient(process.env.DB_URI)
         await client.connect();
         db = client.db("cs_571_mobile_app_dev");
         console.log("DB Connected");

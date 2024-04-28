@@ -17,21 +17,20 @@ app.use('/', cors(), userRouter);
 function auth(req, res, next) {
     if (!req.headers.authorization) {
         res.send({ success: false, error: "Please provide Authorization" })
-    }else{
-        const arr = req.headers.authorization.split(" ")
-        if (arr.length != 2) {
-            res.send({ success: false, error: "Please use Bearer Scheme" })
-        }
-        try {
-            const decode = jwt.verify(arr[1], PRIVATE_KEY)
-            if (decode) {
-                next()
-            } else {
-                res.send({ success: false, error: "Wrong Token" })
-            }
-        } catch (error) {
+    }
+    const arr = req.headers.authorization.split(" ")
+    if (arr.length != 2) {
+        res.send({ success: false, error: "Please use Bearer Scheme" })
+    }
+    try {
+        const decode = jwt.verify(arr[1], PRIVATE_KEY)
+        if (decode) {
+            next()
+        } else {
             res.send({ success: false, error: "Wrong Token" })
         }
+    } catch (error) {
+        res.send({ success: false, error: "Wrong Token" })
     }
 }
 
@@ -43,9 +42,5 @@ app.use('/', cors(), noteRouter);
 app.use('/', cors(), userProfileRouter)
 
 
+
 app.listen(5001, () => console.log('Server is running at 5001 ... '))
-
-
-
-
-
